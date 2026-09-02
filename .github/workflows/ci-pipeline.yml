@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: CI pipeline
 
 on:
   push:
@@ -8,11 +8,60 @@ on:
 
 jobs:
 
-  build:
+  build_backend:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Log in to github container registry
+      uses: docker/login-action@v2
+      with:
+        registery: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.CR }}
+
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: | 
+          docker build ./backend --file ./backend/Dockerfile /
+          --tag ghcr.io/${{ github.repository_owner }}/backend:${{ github.sha }} /
+          --tag ghcr.io/${{ github.repository_owner }}/backend:latest / 
+          .
+
+    - name: Push the Docker image
+      run: |
+          docker push ghcr.io ./${{ github.actor }}/backend:${{ github.sha }}
+          docker push ghcr.io ./${{ github.actor }}/backend:latest
+      
+
+  build_frontend:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Log in to github container registry
+      uses: docker/login-action@v2
+      with:
+        registery: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.CR }}
+
+    - name: Build the Docker image
+      run: | 
+          docker build ./frontend --file ./frontend/Dockerfile /
+          --tag ghcr.io/${{ github.repository_owner }}/frontend:${{ github.sha }} /
+          --tag ghcr.io/${{ github.repository_owner }}/frontend:latest / 
+          .
+
+    - name: Push the Docker image
+      run: |
+          docker push ghcr.io ./${{ github.actor }}/frontend:${{ github.sha }}
+          docker push ghcr.io ./${{ github.actor }}/frontend:latest
+      
