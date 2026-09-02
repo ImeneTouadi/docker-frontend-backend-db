@@ -34,8 +34,8 @@ jobs:
 
     - name: Push the Docker image
       run: |
-          docker push ghcr.io ./touadiimene/backend:${{ github.sha }}
-          docker push ghcr.io ./touadiimene/backend:latest
+          docker push ghcr.io/touadiimene/backend:${{ github.sha }}
+          docker push ghcr.io/touadiimene/backend:latest
       
 
   build_frontend:
@@ -64,6 +64,6 @@ jobs:
 
     - name: Push the Docker image
       run: |
-          docker push ghcr.io ./touadiimene/frontend:${{ github.sha }}
-          docker push ghcr.io ./touadiimene/frontend:latest
+          docker push ghcr.io/touadiimene/frontend:${{ github.sha }}
+          docker push ghcr.io/touadiimene/frontend:latest
       
