@@ -28,14 +28,14 @@ jobs:
       run: | 
           docker build ./backend \
           --file ./backend/Dockerfile \
-          --tag ghcr.io/touadiimene/backend:${{ github.sha }} \
-          --tag ghcr.io/touadiimene/backend:latest \
+          --tag ghcr.io/imenetouadi/backend:${{ github.sha }} \
+          --tag ghcr.io/imenetouadi/backend:latest \
           
 
     - name: Push the Docker image
       run: |
-          docker push ghcr.io/touadiimene/backend:${{ github.sha }}
-          docker push ghcr.io/touadiimene/backend:latest
+          docker push ghcr.io/imenetouadi/backend:${{ github.sha }}
+          docker push ghcr.io/imenetouadi/backend:latest
       
 
   build_frontend:
@@ -58,12 +58,12 @@ jobs:
       run: | 
           docker build ./frontend \
           --file ./frontend/Dockerfile \
-          --tag ghcr.io/touadiimene/frontend:${{ github.sha }} \
-          --tag ghcr.io/touadiimene/frontend:latest \
+          --tag ghcr.io/imenetouadi/frontend:${{ github.sha }} \
+          --tag ghcr.io/imenetouadi/frontend:latest \
           
 
     - name: Push the Docker image
       run: |
-          docker push ghcr.io/touadiimene/frontend:${{ github.sha }}
-          docker push ghcr.io/touadiimene/frontend:latest
+          docker push ghcr.io/imenetouadi/frontend:${{ github.sha }}
+          docker push ghcr.io/imenetouadi/frontend:latest
       
