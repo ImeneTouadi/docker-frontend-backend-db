@@ -28,8 +28,8 @@ jobs:
       run: | 
           docker build ./backend \
           --file ./backend/Dockerfile \
-          --tag ghcr.io/${{ github.repository_owner }}/backend:${{ github.sha }} \
-          --tag ghcr.io/${{ github.repository_owner }}/backend:latest \
+          --tag ghcr.io/${{ lower github.repository_owner }}/backend:${{ github.sha }} \
+          --tag ghcr.io/${{ lower github.repository_owner }}/backend:latest \
           
 
     - name: Push the Docker image
@@ -58,8 +58,8 @@ jobs:
       run: | 
           docker build ./frontend \
           --file ./frontend/Dockerfile \
-          --tag ghcr.io/${{ github.repository_owner }}/frontend:${{ github.sha }} \
-          --tag ghcr.io/${{ github.repository_owner }}/frontend:latest \
+          --tag ghcr.io/${{ lower github.repository_owner }}/frontend:${{ github.sha }} \
+          --tag ghcr.io/${{ lower github.repository_owner }}/frontend:latest \
           
 
     - name: Push the Docker image
