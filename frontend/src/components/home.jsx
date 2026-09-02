@@ -59,7 +59,7 @@ const Home = () => {
     <>
       <Card>
         <CardBody>
-          <CardTitle tag="h1">Todos</CardTitle>
+          <CardTitle tag="h1">Todo List</CardTitle>
           <ListGroup>
             {todos.map((todo) => {
               return (
@@ -70,7 +70,7 @@ const Home = () => {
                   tag="a"
                 >
                   <div className="d-flex w-100 justify-content-between">
-                    <div className="form-check">
+                    <div className="form-check bg-red-500">
                       <input
                         className="form-check-input"
                         type="checkbox"
@@ -87,7 +87,7 @@ const Home = () => {
               );
             })}
           </ListGroup>
-          <Button onClick={() => setModalOpen(true)} color="primary">
+          <Button onClick={() => setModalOpen(true)}>
             Add Todo
           </Button>
         </CardBody>
